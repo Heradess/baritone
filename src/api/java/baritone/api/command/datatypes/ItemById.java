@@ -30,7 +30,7 @@ public enum ItemById implements IDatatypeFor<Item> {
 
     @Override
     public Item get(IDatatypeContext ctx) throws CommandException {
-        ResourceLocation id = new ResourceLocation(ctx.getConsumer().getString());
+        ResourceLocation id = ResourceLocation.parse(ctx.getConsumer().getString());
         Item item;
         if ((item = BuiltInRegistries.ITEM.getOptional(id).orElse(null)) == null) {
             throw new IllegalArgumentException("No item found by that id");
